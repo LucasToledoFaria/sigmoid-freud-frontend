@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./App.css";
+import * as dotenv from "dotenv";
+dotenv.config()
 
 function App() {
   const [message, setMessage] = useState("");
@@ -19,7 +21,7 @@ function App() {
 
     setMessage("");
 
-    fetch("http://localhost:8000/", {
+    fetch(process.env.BACKEND_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
