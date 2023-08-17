@@ -1,7 +1,5 @@
 import { useState } from "react";
 import "./App.css";
-import * as dotenv from "dotenv";
-dotenv.config()
 
 function App() {
   const [message, setMessage] = useState("");
@@ -21,7 +19,7 @@ function App() {
 
     setMessage("");
 
-    fetch(process.env.BACKEND_URL, {
+    fetch(import.meta.env.VITE_BACKEND_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -49,14 +47,14 @@ function App() {
       <section>
         {chats && chats.length
           ? chats.map((chat, index) => (
-              <p key={index} className={chat.role === "user" ? "user_msg" : ""}>
-                <span>
-                  <b>{chat.role.toUpperCase()}</b>
-                </span>
-                <span>:</span>
-                <span>{chat.content}</span>
-              </p>
-            ))
+            <p key={index} className={chat.role === "user" ? "user_msg" : ""}>
+              <span>
+                <b>{chat.role.toUpperCase()}</b>
+              </span>
+              <span>:</span>
+              <span>{chat.content}</span>
+            </p>
+          ))
           : ""}
       </section>
 
